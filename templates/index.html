@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Learner</title>
+    <style>
+        body { font-family:'Courier New'; max-width: 900px; margin: 50px auto; }
+    </style>
+</head>
+<body>
+    <h1>Function Approximation NN</h1>
+
+    <form action="/plot" method="post">
+        <p>
+        <label for="function">Function (e.g., sinx^2):</label>
+        <input type="text" id="function" name="function" required>
+        </p>
+
+        <label for="a">Left border:</label>
+        <input type="text" id="a" name="a" required>
+
+        <label for="b">Right border:</label>
+        <input type="text" id="b" name="b" required>
+
+        <p>
+        <button type="submit">Train & Plot</button>
+        </p>
+    </form>
+
+    {% if plot_url %}
+        <h2>Result</h2>
+        <img src="{{ plot_url }}" alt="Plot of the function">
+        <h3>Mean Square Error: {{ MSE }}</h3>
+    {% endif %}
+
+    {% if error %}
+        <h2 style="color: red;">Error</h2>
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>
